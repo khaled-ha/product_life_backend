@@ -53,12 +53,13 @@ async def contact_us(
     lineOfBusiness: str,
     message: str,
     # contact_us: ContactUs = Body(...),
-    file: UploadFile = File(...),
+    file: Optional[UploadFile] = File(None),
     ):
     url = 'https://my356981.crm.ondemand.com/sap/c4c/odata/v1/c4codataapi/LeadCollection'
     # import ipdb;ipdb.set_trace()
-    file_content = await file.read()
-    base_64_file = base64.b64encode(file_content)
+    if file:
+        file_content = await file.read()
+        base_64_file = base64.b64encode(file_content)
     data = {
       'Name': firstName + ' '+ lastName,
       'NameLanguageCode': 'FR',

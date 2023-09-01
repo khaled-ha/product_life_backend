@@ -1,0 +1,10 @@
+---
+applications:
+- name: product_life_backend
+  processes:
+  - type: web
+    instances: 1
+    memory: 1024M
+    disk_quota: 1024M
+    log-rate-limit-per-second: -1
+    health-check-type: port
